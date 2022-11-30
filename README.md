@@ -1,2 +1,6 @@
-# Team Project (Replace with your Team Name and Journal)
+# Best Team
+## Team Members
+## About Game
+### Screens
+## Design Patterns
 
