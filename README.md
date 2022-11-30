@@ -4,3 +4,7 @@
 ### Screens
 ## Design Patterns
 ## Team Members
+
+Sai Nimkar
+Indranil Dutta
+Sushmita Thrilochana Abhishek Mohanty
