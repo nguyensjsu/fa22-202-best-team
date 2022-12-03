@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -7,7 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 
  * @author Alex Do
  */
-public class Pokemon extends Actor
+
+public class Pokemon extends IPokemon implements IPokemonSubject
+
 {
     boolean init = true;
 
@@ -21,12 +25,13 @@ public class Pokemon extends Actor
     private int speed;
     private int evolutionForm;
     private int statPreset;
-    private int exp; //experience that can trigger a pokemon to level up
-    private int expToLevelUp; //amount pokemon needs to level up
     private int damage;
 
     //attacks moves for Pokemon
     private String[] moveSet; 
+
+
+    private ArrayList<IPokemonObserver> observers ;
 
     //Misc
     boolean enemy;
@@ -60,7 +65,8 @@ public class Pokemon extends Actor
         this.width = width;
         this.height = height;
         this.enemy = enemy;
-        expToLevelUp = (int)Math.pow(level, 1.5);
+
+        observers = new ArrayList<IPokemonObserver>() ;
 
         statCalculation(); //sets pokemon's stats based on their statPreset and their level
         curHealth = health;
@@ -71,6 +77,12 @@ public class Pokemon extends Actor
             targetX = 600;
             targetY = 240;
         }
+
+        if(battleTag!=null) {
+            notifyObservers();
+        }
+
+
     }
 
     /**
@@ -81,7 +93,6 @@ public class Pokemon extends Actor
     {
         enemyMove();
         setImage(image.getCurrentImage());
-        levelUp();
         die(); //die if it has no health
     }  
 
@@ -92,12 +103,14 @@ public class Pokemon extends Actor
     }
 
     public void makeBattleTag() {
-        battleTag = new BattleTag(this);
+        battleTag = new BattleTag((IPokemon)this);
+        ((IPokemonSubject) this).attach(battleTag);
         getWorld().addObject(battleTag, 0, 0);
     }
 
     public void removeBattleTag() {
         getWorld().removeObject(battleTag);
+        removeObserver(battleTag);
     }
 
     // this method removes the character from the world and goes to the end screen when the health is
@@ -124,24 +137,11 @@ public class Pokemon extends Actor
                 getWorld().removeObject(this); // delete character from the world
             }
         }
-    }
-
-    public void levelUp(){
-        if(expToLevelUp <= 0){
-            level++;
-            calculateExpToLevelUp(level);       
-            statCalculation();
-            curHealth += 2;
+        if(battleTag!=null) {
+            notifyObservers();
         }
     }
 
-    public void calculateExpToLevelUp(int level){
-        expToLevelUp = (int)Math.pow(level, 1.5);
-    }
-
-    public int getMaxExpToLevelUp() {
-        return (int)Math.pow(level, 1.5);
-    }
 
     public void statCalculation(){ //calculate stats for each Pokemon using an equation. There will be presets for how the stats will be determined (attack preset, defense preset, speed preset, health preset, etc)
         //Preset 1: Attack
@@ -193,6 +193,10 @@ public class Pokemon extends Actor
             defense = 10 + (int)(2.5 * (double)level);
             speed = 10 + 2 * level;
         }
+        if (battleTag!=null) {
+            notifyObservers();
+        }
+        
     }
 
     /*
@@ -219,6 +223,10 @@ public class Pokemon extends Actor
 
             evolutionForm++;
         }
+        if (battleTag != null) {
+            notifyObservers();
+        }
+        
     }
 
     /**
@@ -241,6 +249,10 @@ public class Pokemon extends Actor
                 curHealth = 0;
             }
         }
+        if (battleTag != null) {
+            notifyObservers();
+        }
+        
     }
 
     public int getFutureHealth(int dmg) {
@@ -256,10 +268,6 @@ public class Pokemon extends Actor
             tempHealth = 0;
         }
         return tempHealth;
-    }
-
-    public void expToLevelUpChange(int change){
-        expToLevelUp += change;
     }
 
     //RETURN STATS
@@ -283,13 +291,6 @@ public class Pokemon extends Actor
         return speed;
     }
 
-    public int getExp(){
-        return (int)(level * 1.7); // this is a calculation based on level, since the enemies are generated for each battle and therefore cannot gain exp (so it'll always be 0)
-    }
-
-    public int getExpToLevelUp(){
-        return expToLevelUp;
-    }
 
     public int getLevel(){
         return level;
@@ -316,8 +317,12 @@ public class Pokemon extends Actor
     public void lowerHealth(int damageReceived){
         curHealth -= damageReceived;
         if(curHealth < 0) //health cannot be less than 0
-            curHealth = 0;    
-        //tag.setHealth(health); // update character's health on their name tag
+            curHealth = 0; 
+
+        if (battleTag != null) {
+            notifyObservers();
+        }
+            //tag.setHealth(health); // update character's health on their name tag
     }
     //Change Health Stat by a certain amount (use negative value to subtract, positive value to add)
     public void healthChange(int change){ 
@@ -325,6 +330,10 @@ public class Pokemon extends Actor
         while(curHealth <= health && change > 0){ //this way the current health cannot go over the maximum health
             curHealth++;
             change--;
+        }
+
+        if (battleTag != null) {
+            notifyObservers();
         }
     }
     //Change Attack Stat by a certain amount (use negative value to subtract, positive value to add)
@@ -457,6 +466,7 @@ public class Pokemon extends Actor
 
     public void battleView() {
         battleTag = new BattleTag(this);
+        ((IPokemonSubject) this).attach(battleTag);
         getWorld().addObject(battleTag, 0, 0);
         if(enemy) {
             image = new GifImage(name + ".gif");
@@ -494,4 +504,25 @@ public class Pokemon extends Actor
         targetY = 240;
         ((Battle)getWorld()).party.add(this);
     }
+
+    public void attach(IPokemonObserver obj) {
+        observers.add( obj ) ;
+    }
+
+    public void notifyObservers() {
+        for (int i=0; i<observers.size(); i++)
+        {
+            IPokemonObserver observer = observers.get(i) ;
+            observer.keyEventUpdate( this ) ;
+        }
+    }
+
+    @Override
+    public void removeObserver(IPokemonObserver obj) {
+        int i = observers.indexOf(obj) ;
+        if ( i >= 0 )
+            observers.remove(i) ;
+    }    
+
+   
 }
