@@ -23,6 +23,9 @@ We have made a game of Pokemon where the player can move around in the Pokemon w
 * Increase in exp leads to increase in the level and after a certain level the Pokemon evolves into its next stage.
 * In the game, the user can battle with 5 trainers spread over the game and fight with them. Beating all 5 wins the game for the user.
 
+### State diagram
+<img src="https://github.com/nguyensjsu/fa22-202-best-team/blob/abfaa39c36cd704e8122477bcb0ff1cad4ca4c99/Game%20state%20machine.png" />
+
 ### Class diagram
 
 **Factory patterns**:
