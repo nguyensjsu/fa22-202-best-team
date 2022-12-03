@@ -11,6 +11,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * string and animation instead of a static image of the text, 
  * but for now, that's all it does. 
  * 
+ * @author Alina Kravchenko
  */
 public class ItemDescription extends Actor
 {

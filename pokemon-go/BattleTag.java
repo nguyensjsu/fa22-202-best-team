@@ -10,44 +10,34 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 
  * @author Alina Kravchenko
  */
-public class BattleTag extends Actor
+public class BattleTag extends Actor implements IPokemonObserver
 {
     boolean init = true;
-    Pokemon pokemon;
+    IPokemon pokemon;
     String name;
     boolean enemy;
-    int maxExp, exp, maxHealth, health, level;
+    int  maxHealth, health, level;
     int width = 304;
     int height = 107;
-    double pixelsPerHealthPoint, pixelsPerExp;
+    double pixelsPerHealthPoint;
 
     int healthBarHeight = 10; 
     int healthBarWidth = 120;
 
-    int expBarHeight = 7; 
-    int expBarWidth = 239;
     // get all the relevant info about this pokemon at first
-    public BattleTag(Pokemon pokemon) {
+    public BattleTag(IPokemon pokemon) {
         this.pokemon = pokemon;
         enemy = pokemon.getEnemy();
         name = pokemon.getName();
-        maxExp = pokemon.getMaxExpToLevelUp();
-        exp = maxExp - pokemon.getExpToLevelUp();
         health = pokemon.getCurHealth();
         maxHealth = pokemon.getHealth();
         pixelsPerHealthPoint = (double)healthBarWidth / maxHealth;
-        pixelsPerExp = (double)expBarWidth / maxExp;
+      
     }
 
     public void act() 
     {
         init();
-        // update relevant info here 
-        level = pokemon.getLevel();
-        health = pokemon.getCurHealth();
-        exp = maxExp - pokemon.getExpToLevelUp();
-        // update the tag itself here
-        update();
     }
 
     public void init() {
@@ -118,19 +108,17 @@ public class BattleTag extends Actor
         // THIS IS WHERE THE LOCATION SHOULD BE SET, THE IMAGE SIZE SHOULDN'T DETERMINE THE RECTANGLE SIZE
         if(!enemy) {
             bars.fillRect(169, 49, healthBarWidth, healthBarHeight);
-            bars.fillRect(50, 93, expBarWidth, expBarHeight);
+           
             bars.setColor(Color.GREEN);
             bars.fillRect(169, 49, (int)(health * pixelsPerHealthPoint), healthBarHeight);
-            bars.setColor(Color.CYAN);
-            bars.fillRect(50, 93, (int)(exp * pixelsPerExp), expBarHeight);
+
         }
         else { // different locations of the bars
             bars.fillRect(128, 49, healthBarWidth, healthBarHeight);
-            bars.fillRect(9, 93, expBarWidth, expBarHeight);
+
             bars.setColor(Color.GREEN);
             bars.fillRect(128, 49, (int)(health * pixelsPerHealthPoint), healthBarHeight);
-            bars.setColor(Color.CYAN);
-            bars.fillRect(9, 93, (int)(exp * pixelsPerExp), expBarHeight);
+ 
         }
         return bars;
     }
@@ -143,5 +131,13 @@ public class BattleTag extends Actor
     // this method gets the health of the health bar 
     public int getHealth(){
         return (int)health;
+    }
+
+    @Override
+    public void keyEventUpdate(IPokemon pokemon) {    
+        level = pokemon.getLevel();
+        health = pokemon.getCurHealth();
+        // update the tag itself here
+        update();
     }
 }

@@ -15,7 +15,7 @@ import java.awt.Color;
  * 
  *  @author Alina Kravchenko
  */
-public class Button extends Actor implements IDisplayComponent
+public class Button extends ICommand implements IDisplayComponent
 {       
     boolean init = true; // variable to allow you to initialise some actions
     Battle world; // this will keep track of the world (must be declared as instance variable)
@@ -35,8 +35,6 @@ public class Button extends Actor implements IDisplayComponent
 
     //quadrants follow a sideways Z pattern: from top left down, then from top right down
     int[][] quadrants = {{q1X, q1Y}, {q2X, q2Y}, {q3X, q3Y}, {q4X, q4Y}};
-    
-    
 
     public void act() {
         prepare();      
@@ -44,7 +42,7 @@ public class Button extends Actor implements IDisplayComponent
 
     // executes the hover     
     public void hover() {
-        for(Button button : ((Battle)getWorld()).getObjects(Button.class)) {
+        for(Button button : world.getObjects(Button.class)) {
             if(button.name != null) 
                 button.setImage("Button" + button.name + ".png");
             setImage("ButtonHover" + name + ".png");
@@ -64,6 +62,8 @@ public class Button extends Actor implements IDisplayComponent
         }
     }
     
-    public void display(Battle b){}
+    public void display(Battle b){
+        b.addObject(this, this.x, this.y);
+    }
     public void addSubComponent(IDisplayComponent c){}
 }

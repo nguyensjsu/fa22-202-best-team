@@ -1,10 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+//import java.awt.Color;
+//import java.awt.Font;
 
 /**
  * This class gives functionality to all moves, such as changing
  * the turn once it is over, and creating a description based on the move
  * for a few seconds. 
  * 
+ * @author Alex Do
  */
 public class Move extends Actor
 {

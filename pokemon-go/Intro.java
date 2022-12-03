@@ -1,9 +1,26 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 
+/**
+ * This class starts playing the background music,
+ * and sets images to introduction screens that 
+ * decsribe how the game works.
+ * 
+ * The pokemon party is made here, where 
+ * a random pokemon-generating method is used 
+ * to decide on 3 random pokemon names with 3 
+ * random levels (and thus, stat presets as later
+ * defined in the Pokemon class)
+ * 
+ *  @author Alex Do
+ */
 public class Intro extends World
 {
-   
+    /**
+     * Constructor for objects of class Intro.
+     * 
+     */
+    //whether the first act was played yet
     boolean init;
 
     //reads keys pressed
@@ -11,7 +28,7 @@ public class Intro extends World
 
     // bag and party of the player's game session
     ArrayList<HashMap<String, Integer>> bag = new ArrayList<HashMap<String, Integer>>();
-    ArrayList<Pokemon> party = new ArrayList<Pokemon>();
+    ArrayList<IPokemon> party = new ArrayList<IPokemon>();
 
     GreenfootSound song;
     //counts screen number
@@ -37,11 +54,10 @@ public class Intro extends World
 
     public void act() { 
         //do in the first act
-
         if(!init) {
-            song = new GreenfootSound("theme.mp3");
-            song.setVolume(30);
-            song.playLoop();
+            //song = new GreenfootSound("theme.mp3");
+            //song.setVolume(30);
+            //song.playLoop();
             //do not repeat this action for other acts
             init = true;
         }
@@ -61,7 +77,6 @@ public class Intro extends World
             // reset cooldown 
             cooldownCount = cooldown;
         }
-       
     }
 
     public ArrayList<HashMap<String, Integer>> makeBag() {
@@ -105,7 +120,7 @@ public class Intro extends World
         return bag;
     }
 
-    public ArrayList<Pokemon> makeParty() {
+    public ArrayList<IPokemon> makeParty() {
         //// add 3 random pokemon to the player's party
         for(int i = 0; i < 3; i++)
             party.add(makeRandomPokemon());
@@ -113,50 +128,45 @@ public class Intro extends World
         return party;
     }
 
-    public Pokemon makeRandomPokemon() {
-        
-  String[] players = {"Charmander", "Pikachu", "Articuno", "Mudkip", "Gyarados", "Gengar", "Dragonite", "Jigglypuff", "Snorlax", "Oddish", "Arcanine", "Kyogre", "Golbat", "Arceus", "Tropius", "Mewtwo"}; // define all possible players
-  int max = 15;
-  int min = 0;
-  int randInd = (int)(Math.random()*(max - min + 1) + min); // generate random index out of the above array (min = 0, max = 5)
-  int level = 0;
-  level = (int)(Math.random()*(max - min + 1) + min);
-  // make instance of the enemy classes described in the array, based on the random index
-  if(players[randInd].equals("Charmander"))
-      return new Charmander(level, false);
-  else if(players[randInd].equals("Pikachu"))
-      return new Pikachu(level, false); 
-  else if(players[randInd].equals("Articuno"))
-      return new Articuno(level, false); 
-  else if(players[randInd].equals("Mudkip"))
-      return new Mudkip(level, false); 
-  else if(players[randInd].equals("Dragonite"))
-      return new Dragonite(level, false);
-  else if(players[randInd].equals("Jigglypuff"))
-      return new Jigglypuff(level, false);
-  else if(players[randInd].equals("Gyarados"))
-      return new Gyarados(level, false); 
-  else if(players[randInd].equals("Gengar"))
-      return new Gengar(level, false); 
-  else if(players[randInd].equals("Snorlax"))
-      return new Snorlax(level, false); 
-  else if(players[randInd].equals("Oddish"))
-      return new Oddish(level, false); 
-  else if(players[randInd].equals("Arcanine"))
-      return new Arcanine(level, false); 
-  else if(players[randInd].equals("Kyogre"))
-      return new Kyogre(level, false); 
-  else if(players[randInd].equals("Golbat"))
-      return new Golbat(level, false); 
-  else if(players[randInd].equals("Arceus"))
-      return new Arceus(level, false); 
-  else if(players[randInd].equals("Tropius"))
-      return new Tropius(level, false); 
-  else //if(enemies[randInd].equals("Mewtwo"))
-      return new Mewtwo(level, false); 
-}
-
-
-    // give them variable stats?
-      
+    public IPokemon makeRandomPokemon() { // give them variable stats?
+        String[] players = {"Charmander", "Pikachu", "Articuno", "Mudkip", "Gyarados", "Gengar", "Dragonite", "Jigglypuff", "Snorlax", "Oddish", "Arcanine", "Kyogre", "Golbat", "Arceus", "Tropius", "Mewtwo"}; // define all possible players
+        int max = 15;
+        int min = 0;
+        int randInd = (int)(Math.random()*(max - min + 1) + min); // generate random index out of the above array (min = 0, max = 5)
+        int level = 0;
+        level = (int)(Math.random()*(max - min + 1) + min);
+        // make instance of the enemy classes described in the array, based on the random index
+        if(players[randInd].equals("Charmander"))
+            return new Charmander(level, false);
+        else if(players[randInd].equals("Pikachu"))
+            return new Pikachu(level, false); 
+        else if(players[randInd].equals("Articuno"))
+            return new Articuno(level, false); 
+        else if(players[randInd].equals("Mudkip"))
+            return new Mudkip(level, false); 
+        else if(players[randInd].equals("Dragonite"))
+            return new Dragonite(level, false);
+        else if(players[randInd].equals("Jigglypuff"))
+            return new Jigglypuff(level, false);
+        else if(players[randInd].equals("Gyarados"))
+            return new Gyarados(level, false); 
+        else if(players[randInd].equals("Gengar"))
+            return new Gengar(level, false); 
+        else if(players[randInd].equals("Snorlax"))
+            return new Snorlax(level, false); 
+        else if(players[randInd].equals("Oddish"))
+            return new Oddish(level, false); 
+        else if(players[randInd].equals("Arcanine"))
+            return new Arcanine(level, false); 
+        else if(players[randInd].equals("Kyogre"))
+            return new Kyogre(level, false); 
+        else if(players[randInd].equals("Golbat"))
+            return new Golbat(level, false); 
+        else if(players[randInd].equals("Arceus"))
+            return new Arceus(level, false); 
+        else if(players[randInd].equals("Tropius"))
+            return new Tropius(level, false); 
+        else //if(enemies[randInd].equals("Mewtwo"))
+            return new Mewtwo(level, false); 
+    }
 }

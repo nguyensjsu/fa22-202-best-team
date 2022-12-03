@@ -24,13 +24,13 @@ public class Battle extends World implements IDisplayComponent
 
     public int trainer; // trainer number of the one that you're battling right now
     public ArrayList<Integer> beatenTrainers = new ArrayList<Integer>(); // the trainers that should not trigger battle anymore
-    public Pokemon player, enemy;
+    public IPokemon player, enemy;
     public int x, y;
     public boolean wildMode;
     // hashmaps of _item name_ and _item quantity_ are in a list (to hold multiple name-quantity pairs), and there are multiple such lists for each category of items
     public ArrayList<HashMap<String, Integer>> bag = new ArrayList<HashMap<String, Integer>>();
     /// keeps track of current party of pokemon objects
-    public ArrayList<Pokemon> party = new ArrayList<Pokemon>();
+    public ArrayList<IPokemon> party = new ArrayList<IPokemon>();
 
     //Basically, turn 0 is when the player can attack. Turn 1 is when the enemy is attacking. Once the person clicks the button for the attack, turn 0 is updated to 1. Then the opponent will attack and turn set it back to turn 0;
     private int turn = 0; 
@@ -46,10 +46,9 @@ public class Battle extends World implements IDisplayComponent
         {         
            c.display(b);
         }
-    }    
+    }  
 
-
-    public Battle(ArrayList<Integer> beatenTrainers, int trainer, int x, int y, boolean wildMode, ArrayList<HashMap<String, Integer>> bag, ArrayList<Pokemon> party)
+    public Battle(ArrayList<Integer> beatenTrainers, int trainer, int x, int y, boolean wildMode, ArrayList<HashMap<String, Integer>> bag, ArrayList<IPokemon> party)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1);
@@ -66,15 +65,10 @@ public class Battle extends World implements IDisplayComponent
         // keyboard reader
         addObject(keys, 0, 0);
 
-        // create and add player and enemy to battle (Pokemons)
+        // create and add player and enemy to battle
         player = party.get(0);
         enemy = makeRandomPokemon(); // enemy should be chosen at random
-        
-        // Adding player and enemy pokemon components
-        /*
-        addSubComponent(player);
-        addSubComponent(enemy);
-        */
+                      
         
         addObject(enemy, 0, 0);
         addObject(player, 0, 0); // add player to world
@@ -86,7 +80,7 @@ public class Battle extends World implements IDisplayComponent
     }
 
     public void goToMenu() {
-        ArrayList<Button> buttons = new ArrayList<Button>();  
+        ArrayList<Button> buttons = new ArrayList<Button>();
         
         FightButton fightButton = new FightButton();
         PokemonButton pokemonButton = new PokemonButton();
@@ -105,7 +99,7 @@ public class Battle extends World implements IDisplayComponent
         buttons.add(pokemonButton);
         buttons.add(bagButton);
         buttons.add(runButton);
-            
+        
         addObject(new Selection(buttons, true, buttons.get(0)), buttons.get(0).quadrants[0][0], buttons.get(0).quadrants[0][1]);
     }
 
@@ -117,16 +111,15 @@ public class Battle extends World implements IDisplayComponent
         this.bag = bag;
     }
 
-    public ArrayList<Pokemon> getParty() {
+    public ArrayList<IPokemon> getParty() {
         return party;
     }
 
-    public void setParty(ArrayList<Pokemon> party) {
+    public void setParty(ArrayList<IPokemon> party) {
         this.party = party;
     }
 
-    public Pokemon makeRandomPokemon() { // give them variable stats?
-        String[] enemies = {"Charmander", "Pikachu", "Articuno", "Mudkip", "Gyarados", "Gengar", "Dragonite", "Jigglypuff", "Snorlax", "Oddish", "Arcanine", "Kyogre", "Golbat", "Arceus", "Tropius", "Mewtwo"}; // define all possible enemies
+    public IPokemon makeRandomPokemon() { // give them variable stats?
         int max = 15;
         int min = 0;
         int randInd = (int)(Math.random()*(max - min + 1) + min); // generate random index out of the above array (min = 0, max = 5)
@@ -140,39 +133,8 @@ public class Battle extends World implements IDisplayComponent
             min = 10;
             level = (int)(Math.random()*(max - min + 1) + min);
         }
-        // make instance of the enemy classes described in the array, based on the random index
-        if(enemies[randInd].equals("Charmander"))
-            return new Charmander(level, true);
-        else if(enemies[randInd].equals("Pikachu"))
-            return new Pikachu(level, true); 
-        else if(enemies[randInd].equals("Articuno"))
-            return new Articuno(level, true); 
-        else if(enemies[randInd].equals("Mudkip"))
-            return new Mudkip(level, true); 
-        else if(enemies[randInd].equals("Dragonite"))
-            return new Dragonite(level, true);
-        else if(enemies[randInd].equals("Jigglypuff"))
-            return new Jigglypuff(level, true);
-        else if(enemies[randInd].equals("Gyarados"))
-            return new Gyarados(level, true); 
-        else if(enemies[randInd].equals("Gengar"))
-            return new Gengar(level, true); 
-        else if(enemies[randInd].equals("Snorlax"))
-            return new Snorlax(level, true); 
-        else if(enemies[randInd].equals("Oddish"))
-            return new Oddish(level, true); 
-        else if(enemies[randInd].equals("Arcanine"))
-            return new Arcanine(level, true); 
-        else if(enemies[randInd].equals("Kyogre"))
-            return new Kyogre(level, true); 
-        else if(enemies[randInd].equals("Golbat"))
-            return new Golbat(level, true); 
-        else if(enemies[randInd].equals("Arceus"))
-            return new Arceus(level, true); 
-        else if(enemies[randInd].equals("Tropius"))
-            return new Tropius(level, true); 
-        else //if(enemies[randInd].equals("Mewtwo"))
-            return new Mewtwo(level, true); 
+        PokemonFactory k = new PokemonFactory();
+        return k.getPokemon(randInd, level);
     }
 
     public void capturePokemon(Pokemon captured){

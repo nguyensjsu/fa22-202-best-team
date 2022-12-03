@@ -85,8 +85,7 @@ public class Attack extends Move
                 if(!attackDone) {// only do the following if attack hasn't applied its stat changes yet
                     // the attack of the attacker (charmander) is way too high, by itself it reads as 37 at the moment
                     damageInflicted = (int)(attacker.getAttack() * (damage * 0.2)); // calculate stat effect of attack
-                    if(pokemon.getFutureHealth(damageInflicted) <= 0)
-                        attacker.expToLevelUpChange(-pokemon.getExp()); // give attacker exp of opponent if it killed the opponent
+                  
                 }
                 pokemon.getHit(damageInflicted, attackDone); // apply stat effect of attack
                 attackDone = true; // do not inflict damage (and other things besides cooldown actions) for the next acts

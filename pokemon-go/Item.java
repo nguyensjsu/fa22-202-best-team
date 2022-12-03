@@ -8,11 +8,11 @@ import java.util.ArrayList;
  * This class is a blueprint for items in the player's bag. 
  * All they contain is a name, and an amount of such item, which 
  * can be changed when an item is used (decrease in number).
- *
+ * 
  * One special case is that this also contains the 'close' button 
  * "item", which is not a limited thing to use, so it's amount is set as -1
  * to distinguish it from a useable game item.
- *
+ * 
  *  @author Alina Kravchenko
  */
 public class Item extends ICommand
@@ -37,10 +37,10 @@ public class Item extends ICommand
         assignImage();
     }
 
-    public void act()
+    public void act() 
     {
         prepare();
-    }
+    }    
 
     public void prepare() {
         if(init) {
