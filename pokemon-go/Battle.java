@@ -16,6 +16,7 @@ import java.util.*;
  * The enemy is defined here, since every battle generates a random one 
  * and it's removed on exit.
  * 
+ *  @author Alina Kravchenko
  */
 public class Battle extends World
 {
@@ -35,7 +36,7 @@ public class Battle extends World
     private int turn = 0; 
 
     public Battle(ArrayList<Integer> beatenTrainers, int trainer, int x, int y, boolean wildMode, ArrayList<HashMap<String, Integer>> bag, ArrayList<Pokemon> party)
-    { 
+    {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1);
         setBackground(new GreenfootImage("battleScreen.png"));
@@ -59,7 +60,7 @@ public class Battle extends World
         player.battleView(); // you cannot setlocation in the constructor itself, so put pokemon into battleview when they're made here
         enemy.battleView();
 
-        goToMenu();   
+        goToMenu();
     }
 
     public void goToMenu() {
@@ -71,7 +72,6 @@ public class Battle extends World
         for(Button button : buttons)
             addObject(button, button.x, button.y);
         addObject(new Selection(buttons, true, buttons.get(0)), buttons.get(0).quadrants[0][0], buttons.get(0).quadrants[0][1]);
-
     }
 
     public ArrayList<HashMap<String, Integer>> getBag() {
@@ -90,8 +90,7 @@ public class Battle extends World
         this.party = party;
     }
 
-    public Pokemon makeRandomPokemon() {
-        
+    public Pokemon makeRandomPokemon() { // give them variable stats?
         String[] enemies = {"Charmander", "Pikachu", "Articuno", "Mudkip", "Gyarados", "Gengar", "Dragonite", "Jigglypuff", "Snorlax", "Oddish", "Arcanine", "Kyogre", "Golbat", "Arceus", "Tropius", "Mewtwo"}; // define all possible enemies
         int max = 15;
         int min = 0;
@@ -138,7 +137,7 @@ public class Battle extends World
         else if(enemies[randInd].equals("Tropius"))
             return new Tropius(level, true); 
         else //if(enemies[randInd].equals("Mewtwo"))
-            return new Mewtwo(level, true); // give them variable stats?
+            return new Mewtwo(level, true); 
     }
 
     public void capturePokemon(Pokemon captured){
