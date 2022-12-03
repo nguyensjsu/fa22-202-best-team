@@ -11,6 +11,8 @@ public class Strengthen extends StatChange
     private boolean enemy;
     
     public Strengthen(IPokemon caster, boolean enemy){
+        
         super(name, statType, (int)(caster.getAttack() / 2), caster , enemy); //increase attack by 1.5 
-    } 
+    
+    }
 }
