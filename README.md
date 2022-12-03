@@ -38,6 +38,8 @@ In Factory pattern, we create object without exposing the creation logic to the 
 
 Command is a behavioral design pattern that turns a request into a stand-alone object that contains all information about the request. This transformation lets you pass requests as a method arguments, delay or queue a request’s execution, and support undoable operations.
 
+![command_pattern_class_diagram](command_pattern_class_diagram.png)
+
 **Composite pattern**:
 
 Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.
