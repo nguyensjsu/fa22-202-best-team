@@ -63,7 +63,16 @@ public class Battle extends World
     }
 
     public void goToMenu() {
-         }
+        ArrayList<Button> buttons = new ArrayList<Button>();
+        buttons.add(new FightButton());
+        buttons.add(new PokemonButton());
+        buttons.add(new BagButton());
+        buttons.add(new RunButton());
+        for(Button button : buttons)
+            addObject(button, button.x, button.y);
+        addObject(new Selection(buttons, true, buttons.get(0)), buttons.get(0).quadrants[0][0], buttons.get(0).quadrants[0][1]);
+
+    }
 
     public ArrayList<HashMap<String, Integer>> getBag() {
         return bag;
