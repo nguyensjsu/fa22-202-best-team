@@ -37,6 +37,30 @@ public class Intro extends World
 
     public void act() { 
         //do in the first act
+
+        if(!init) {
+            song = new GreenfootSound("theme.mp3");
+            song.setVolume(30);
+            song.playLoop();
+            //do not repeat this action for other acts
+            init = true;
+        }
+
+        //get keyboard key pressed
+        if(cooldownCount-- < 0 && keys.keyIs("enter")) {
+            if(screenCounter < 2) {
+                //set background to new screen number count (next screen in set of screens for intro)
+                setBackground(new GreenfootImage("IntroScreen" + ++screenCounter + ".png"));
+                getBackground().scale(800, 600);   
+            }
+            else {           //if last screen image was shown, then move onto the main menu
+                // make empty array of beaten trainers ( no one beaten yet)
+                ArrayList<Integer> beatenTrainers = new ArrayList<Integer>();
+                Greenfoot.setWorld(new ScrollingWorld(beatenTrainers, -800, -600, bag, party));
+            }
+            // reset cooldown 
+            cooldownCount = cooldown;
+        }
        
     }
 
