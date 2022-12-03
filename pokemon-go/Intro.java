@@ -11,7 +11,7 @@ public class Intro extends World
 
     // bag and party of the player's game session
     ArrayList<HashMap<String, Integer>> bag = new ArrayList<HashMap<String, Integer>>();
-    ArrayList<Pokemon> party = new ArrayList<Pokemon>();
+    ArrayList<IPokemon> party = new ArrayList<IPokemon>();
 
     GreenfootSound song;
     //counts screen number
@@ -110,7 +110,7 @@ public class Intro extends World
         return bag;
     }
 
-    public ArrayList<Pokemon> makeParty() {
+    public ArrayList<IPokemon> makeParty() {
         //// add 3 random pokemon to the player's party
         for(int i = 0; i < 3; i++)
             party.add(makeRandomPokemon());
@@ -118,7 +118,7 @@ public class Intro extends World
         return party;
     }
 
-    public Pokemon makeRandomPokemon() {
+    public IPokemon makeRandomPokemon() {
         
   String[] players = {"Charmander", "Pikachu", "Articuno", "Mudkip", "Gyarados", "Gengar", "Dragonite", "Jigglypuff", "Snorlax", "Oddish", "Arcanine", "Kyogre", "Golbat", "Arceus", "Tropius", "Mewtwo"}; // define all possible players
   int max = 15;
