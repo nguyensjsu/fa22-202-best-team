@@ -35,7 +35,31 @@ public class Battle extends World
     private int turn = 0; 
 
     public Battle(ArrayList<Integer> beatenTrainers, int trainer, int x, int y, boolean wildMode, ArrayList<HashMap<String, Integer>> bag, ArrayList<Pokemon> party)
-    {    
+    { 
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(800, 600, 1);
+        setBackground(new GreenfootImage("battleScreen.png"));
+
+        this.x = x;
+        this.y = y;
+        this.wildMode = wildMode;
+        this.trainer = trainer;
+        this.beatenTrainers = beatenTrainers;
+        this.bag = bag;
+        this.party = party;
+
+        // keyboard reader
+        addObject(keys, 0, 0);
+
+        // create and add player and enemy to battle
+        player = party.get(0);
+        enemy = makeRandomPokemon(); // enemy should be chosen at random
+        addObject(enemy, 0, 0);
+        addObject(player, 0, 0); // add player to world
+        player.battleView(); // you cannot setlocation in the constructor itself, so put pokemon into battleview when they're made here
+        enemy.battleView();
+
+        goToMenu();   
     }
 
     public void goToMenu() {
