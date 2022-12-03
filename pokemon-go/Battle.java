@@ -18,7 +18,7 @@ import java.util.*;
  * 
  *  @author Alina Kravchenko
  */
-public class Battle extends World
+public class Battle extends World implements IDisplayComponent
 {
     KeyReader keys = new KeyReader();
 
@@ -34,6 +34,20 @@ public class Battle extends World
 
     //Basically, turn 0 is when the player can attack. Turn 1 is when the enemy is attacking. Once the person clicks the button for the attack, turn 0 is updated to 1. Then the opponent will attack and turn set it back to turn 0;
     private int turn = 0; 
+    
+    private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
+    
+    public void addSubComponent( IDisplayComponent c )
+    {
+        components.add( c ) ;
+    }
+    public void display(Battle b){
+        for (IDisplayComponent c : components )
+        {         
+           c.display(b);
+        }
+    }    
+
 
     public Battle(ArrayList<Integer> beatenTrainers, int trainer, int x, int y, boolean wildMode, ArrayList<HashMap<String, Integer>> bag, ArrayList<Pokemon> party)
     {    
@@ -52,25 +66,46 @@ public class Battle extends World
         // keyboard reader
         addObject(keys, 0, 0);
 
-        // create and add player and enemy to battle
+        // create and add player and enemy to battle (Pokemons)
         player = party.get(0);
         enemy = makeRandomPokemon(); // enemy should be chosen at random
+        
+        // Adding player and enemy pokemon components
+        /*
+        addSubComponent(player);
+        addSubComponent(enemy);
+        */
+        
         addObject(enemy, 0, 0);
         addObject(player, 0, 0); // add player to world
         player.battleView(); // you cannot setlocation in the constructor itself, so put pokemon into battleview when they're made here
         enemy.battleView();
+        
 
         goToMenu();
     }
 
     public void goToMenu() {
-        ArrayList<Button> buttons = new ArrayList<Button>();
-        buttons.add(new FightButton());
-        buttons.add(new PokemonButton());
-        buttons.add(new BagButton());
-        buttons.add(new RunButton());
-        for(Button button : buttons)
-            addObject(button, button.x, button.y);
+        ArrayList<Button> buttons = new ArrayList<Button>();  
+        
+        FightButton fightButton = new FightButton();
+        PokemonButton pokemonButton = new PokemonButton();
+        BagButton bagButton = new BagButton();
+        RunButton runButton = new RunButton();    
+        
+        // Creating composite pattern for buttons
+        addSubComponent(fightButton);
+        addSubComponent(pokemonButton);
+        addSubComponent(bagButton);
+        addSubComponent(runButton);
+        
+        display(this);      
+        
+        buttons.add(fightButton);
+        buttons.add(pokemonButton);
+        buttons.add(bagButton);
+        buttons.add(runButton);
+            
         addObject(new Selection(buttons, true, buttons.get(0)), buttons.get(0).quadrants[0][0], buttons.get(0).quadrants[0][1]);
     }
 
