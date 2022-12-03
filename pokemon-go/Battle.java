@@ -90,7 +90,55 @@ public class Battle extends World
         this.party = party;
     }
 
-    public Pokemon makeRandomPokemon() { // give them variable stats?
+    public Pokemon makeRandomPokemon() {
+        
+        String[] enemies = {"Charmander", "Pikachu", "Articuno", "Mudkip", "Gyarados", "Gengar", "Dragonite", "Jigglypuff", "Snorlax", "Oddish", "Arcanine", "Kyogre", "Golbat", "Arceus", "Tropius", "Mewtwo"}; // define all possible enemies
+        int max = 15;
+        int min = 0;
+        int randInd = (int)(Math.random()*(max - min + 1) + min); // generate random index out of the above array (min = 0, max = 5)
+        int level = 0;
+        if(wildMode){
+            max = 15;
+            min = 1;
+            level = (int)(Math.random()*(max - min + 1) + min);
+        } else {
+            max = 30;
+            min = 10;
+            level = (int)(Math.random()*(max - min + 1) + min);
+        }
+        // make instance of the enemy classes described in the array, based on the random index
+        if(enemies[randInd].equals("Charmander"))
+            return new Charmander(level, true);
+        else if(enemies[randInd].equals("Pikachu"))
+            return new Pikachu(level, true); 
+        else if(enemies[randInd].equals("Articuno"))
+            return new Articuno(level, true); 
+        else if(enemies[randInd].equals("Mudkip"))
+            return new Mudkip(level, true); 
+        else if(enemies[randInd].equals("Dragonite"))
+            return new Dragonite(level, true);
+        else if(enemies[randInd].equals("Jigglypuff"))
+            return new Jigglypuff(level, true);
+        else if(enemies[randInd].equals("Gyarados"))
+            return new Gyarados(level, true); 
+        else if(enemies[randInd].equals("Gengar"))
+            return new Gengar(level, true); 
+        else if(enemies[randInd].equals("Snorlax"))
+            return new Snorlax(level, true); 
+        else if(enemies[randInd].equals("Oddish"))
+            return new Oddish(level, true); 
+        else if(enemies[randInd].equals("Arcanine"))
+            return new Arcanine(level, true); 
+        else if(enemies[randInd].equals("Kyogre"))
+            return new Kyogre(level, true); 
+        else if(enemies[randInd].equals("Golbat"))
+            return new Golbat(level, true); 
+        else if(enemies[randInd].equals("Arceus"))
+            return new Arceus(level, true); 
+        else if(enemies[randInd].equals("Tropius"))
+            return new Tropius(level, true); 
+        else //if(enemies[randInd].equals("Mewtwo"))
+            return new Mewtwo(level, true); // give them variable stats?
     }
 
     public void capturePokemon(Pokemon captured){
