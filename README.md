@@ -1,6 +1,6 @@
 ## Best Team
 
-GOAL:
+### GOAL:
 
 To learn and implement design patterns in an application.
 
@@ -8,13 +8,13 @@ Contributions:
 
 * Indranil: Factory pattern for selecting the opponent Pokemon
 * Abhishek: Command pattern for selecting the moves, party Pokemon and bag items
-* Sushmitha: composite pattern to desplay the buttons on battle screen
+* Sushmitha: composite pattern to display the buttons on battle screen
 * Sai: Observer Pattern for tracking the Pokemon HP, video
 
 
-Link to the game video
+### Link to the game video
 
-Project Description
+### Project Description
 
 We have made a game of Pokemon where the player can move around in the Pokemon world and fight with the wild Pokemon and the trainers with other pokemon.
 
@@ -23,8 +23,7 @@ We have made a game of Pokemon where the player can move around in the Pokemon w
 * Increase in exp leads to increase in the level and after a certain level the Pokemon evolves into its next stage.
 * In the game, the user can battle with 5 trainers spread over the game and fight with them. Beating all 5 wins the game for the user.
 
-Class diagram
-
+### Class diagram
 
 **Factory patterns**:
 
@@ -40,5 +39,6 @@ Composite is a structural design pattern that lets you compose objects into tree
 
 
 **Observer pattern**:
+
 Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
 
