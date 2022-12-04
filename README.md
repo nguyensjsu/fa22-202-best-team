@@ -60,5 +60,8 @@ We have applied composite pattern to display option buttons on battle screen.
 
 **Observer pattern**:
 
-Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
+Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing. Observer Pattern is implemented to observe the health and level values for the pokemon class. Pokemon is the subject and BattleTag class is the observer.
+
+![Observer Pattern class diagram](https://user-images.githubusercontent.com/42314923/205478489-8c9c364f-5473-4676-beff-341f5dd2e767.png)
+
 
