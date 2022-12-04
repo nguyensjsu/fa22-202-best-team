@@ -32,7 +32,14 @@ We have made a game of Pokemon where the player can move around in the Pokemon w
 
 **Factory patterns**:
 
-In Factory pattern, we create object without exposing the creation logic to the client and refer to newly created object using a common interface.
+The Factory pattern is a creational pattern where we create object without exposing the creation logic to the client and refer to newly created object using a common interface.
+
+* The `IPokemon` abstract class is the one which defines the interface which is to be exposed to the users of the classes.
+* The `Pokemon` class inherits the `IPokemon` class and has a concrete implementation of the `IPokemon` interfact.
+* The other Pokemon classes such as `Arcanine`, `Arceus`, etc provide variants which need to be instantiated in the `Battle` world.
+* The `Battle` world has an object of the `PokemonFactory` class which is used to return instances of the Pokemon variants by using the `getPokemon` function.
+
+![Factory pattern class diagram](factory_class_diagram.png)
 
 **Command pattern**:
 
