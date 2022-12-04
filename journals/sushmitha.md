@@ -62,5 +62,5 @@ Team discussed about both Spider Apocalypse and Pokemon Go games along with desi
 * N/A
 
 #### 4. XP Core Values - Courage, Communication, Feedback
-Team had a open communication and actively helped each other when stuck implementing pattern. Everyone worked hard and ensured patterns were applied successfully. Overall it we learnt a lot about design patterns and had fun learning.
+Team had a open communication and actively helped each other when stuck implementing pattern. Everyone worked hard and ensured patterns were applied successfully. Overall we learnt a lot together about design patterns and had fun learning.
 * 
