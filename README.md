@@ -7,12 +7,17 @@ To learn and implement design patterns in an application.
 Contributions:
 
 * Indranil: Factory pattern for selecting the opponent Pokemon
+    - [Journal](journals/indranil.md)
 * Abhishek: Command pattern for selecting the moves, party Pokemon and bag items
+    - [Journal](journals/abhishek.md)
 * Sushmitha: composite pattern to display the buttons on battle screen
+    - [Journal](journals/sushmitha.md)
 * Sai: Observer Pattern for tracking the Pokemon HP, video
-
+    - [Journal](journals/sai.md)
 
 ### Link to the game video
+
+[Project Spiel - User Story](https://www.youtube.com/watch?v=PAGUXUL7cts)
 
 ### Project Description
 
