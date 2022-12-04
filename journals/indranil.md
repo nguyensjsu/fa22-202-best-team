@@ -15,3 +15,11 @@
     - Explore open source games which we can be used to be build our project.
 - What blockers do I have?
     - Current blocker: starter code for the project
+
+## Week 3
+- What did I do this week?
+    - Finalised game to be implemented and decided on starter code. Explored code to find apt patterns.
+- What am I planning for the next week?
+    - Implement the patterns and test code after integrating with others changes.
+- What blockers do I have?
+    - No blockers.
