@@ -60,7 +60,7 @@ Command is a behavioral design pattern that turns a request into a stand-alone o
 
 Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.
 We have applied composite pattern to display option buttons on battle screen.
-* The `IDisplayInterface1` consists of 2 methods - `addSubComponents(IDisplayComponent)` and `display(Battle)`. The interface is implemented by client class `Battle` and component class 'Buttons`.
+* The `IDisplayInterface1` consists of 2 methods - `addSubComponents(IDisplayComponent)` and `display(Battle)`. The interface is implemented by client class `Battle` and component class `Buttons`.
 * The display(Battle) method is defined inside button subclasses.
 * `addSubComponent` is used to add components by the client classes and then display method of each component is called in order to render the buttons in the Battle class.
 
