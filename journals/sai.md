@@ -48,4 +48,15 @@ XP Core Value: Communication
 4. XP Core Value - Communication
 - We were constantly in communication with each other via zoom calls
 
+## Week 4 Scrum Report
+1. What tasks did I work on / complete?
+- Designed and implemented Observer Design Pattern in BattleTag and Pokemon Classes.
+- Created the User Story Video and UML Diagrams
+- Finished documentation 
 
+2. What am I planning to work on next?
+- N/A
+3. What tasks are blocked waiting on another team member?
+- N/A
+4. XP Core Value - Simplicity
+- We tried to keep the code as simple as possible.
