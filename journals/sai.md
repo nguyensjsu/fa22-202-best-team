@@ -34,4 +34,18 @@ XP Core Value: Communication
 4. XP Core Value - Feedback
 - We followed a regualr sessions of feedback in the team. 
 
+## Week 3 Scrum Report
+1. What tasks did I work on / complete?
+- Studied the boilerplate code and figured out the logic for BattleTag and Pokemon Classes
+- Figured out the design patterns that can be implemented in the project.
+
+2. What am I planning to work on next?
+- Implement the observer design patterns in the code.
+
+3. What tasks are blocked waiting on another team member?
+- Implementation of the Intro World and Scrolling World as well as certain dependent classes and interfaces such as IPokemon
+
+4. XP Core Value - Communication
+- We were constantly in communication with each other via zoom calls
+
 
