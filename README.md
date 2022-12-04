@@ -44,7 +44,7 @@ Command is a behavioral design pattern that turns a request into a stand-alone o
 
 Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.
 We have applied composite pattern to display option buttons on battle screen.
-<img src="https://github.com/nguyensjsu/fa22-202-best-team/blob/682e1855919fc2ec238f906493092a1810b6ba19/Composite%20Pattern.png" />
+<img src="https://github.com/nguyensjsu/fa22-202-best-team/blob/03409314af58aa9b9af4285109b082e36463913d/Composite%20pattern%20Class%20diagram.png" />
 
 **Observer pattern**:
 
