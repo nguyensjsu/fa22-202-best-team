@@ -28,10 +28,10 @@ We have made a game of Pokemon where the player can move around in the Pokemon w
 * Increase in exp leads to increase in the level and after a certain level the Pokemon evolves into its next stage.
 * In the game, the user can battle with 5 trainers spread over the game and fight with them. Beating all 5 wins the game for the user.
 ### High level Architecture Diagram
-<img src="https://github.com/nguyensjsu/fa22-202-best-team/blob/64292391ca255863de7481e06b10e0c46e3dae84/High%20level%20Architecture%20diagram.png" />
+![High level Architecture Diagram](High_level_Architecture_diagram.png)
 
 ### Game State Diagram
-<img src="https://github.com/nguyensjsu/fa22-202-best-team/blob/abfaa39c36cd704e8122477bcb0ff1cad4ca4c99/Game%20state%20machine.png" />
+![Game State Diagram](Game_state_machine.png)
 
 ### Class diagram
 
@@ -50,9 +50,9 @@ The Factory pattern is a creational pattern where we create object without expos
 
 Command is a behavioral design pattern that turns a request into a stand-alone object that contains all information about the request. This transformation lets you pass requests as a method arguments, delay or queue a request’s execution, and support undoable operations.
 
-* The ICommand class in the abstract class which is extended by all the button required on the battle screen.
-* Selection class creates an instance of ICommand class and calls the show and hover method of the related class as per the command type.
-* PartyTag and Fight are the other command which use the command pattern in the game in the same way as the attack commands
+* The `ICommand` class in the abstract class which is extended by all the button required on the battle screen.
+* `Selection` class creates an instance of `ICommand` class and calls the show and hover method of the related class as per the command type.
+* `PartyTag` and `Fight` are the other command which use the command pattern in the game in the same way as the attack commands
 
 ![command_pattern_class_diagram](command_pattern_class_diagram.png)
 
@@ -61,12 +61,10 @@ Command is a behavioral design pattern that turns a request into a stand-alone o
 Composite is a structural design pattern that lets you compose objects into tree structures and then work with these structures as if they were individual objects.
 We have applied composite pattern to display option buttons on battle screen.
 
-<img src="https://github.com/nguyensjsu/fa22-202-best-team/blob/03409314af58aa9b9af4285109b082e36463913d/Composite%20pattern%20Class%20diagram.png" />
+![Composite pattern class diagram](Composite_pattern_Class_diagram.png)
 
 **Observer pattern**:
 
 Observer is a behavioral design pattern that lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing. Observer Pattern is implemented to observe the health and level values for the pokemon class. Pokemon is the subject and BattleTag class is the observer.
 
-![Observer Pattern class diagram](https://user-images.githubusercontent.com/42314923/205478489-8c9c364f-5473-4676-beff-341f5dd2e767.png)
-
-
+![Observer Pattern class diagram](observer_class_diagram.png)
