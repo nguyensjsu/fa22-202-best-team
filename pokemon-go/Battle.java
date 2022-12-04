@@ -34,7 +34,8 @@ public class Battle extends World implements IDisplayComponent
 
     //Basically, turn 0 is when the player can attack. Turn 1 is when the enemy is attacking. Once the person clicks the button for the attack, turn 0 is updated to 1. Then the opponent will attack and turn set it back to turn 0;
     private int turn = 0; 
-    
+    PokemonFactory myPokeFactory;
+        
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
     
     public void addSubComponent( IDisplayComponent c )
@@ -53,7 +54,7 @@ public class Battle extends World implements IDisplayComponent
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1);
         setBackground(new GreenfootImage("battleScreen.png"));
-
+        myPokeFactory = new PokemonFactory();
         this.x = x;
         this.y = y;
         this.wildMode = wildMode;
@@ -75,7 +76,7 @@ public class Battle extends World implements IDisplayComponent
         player.battleView(); // you cannot setlocation in the constructor itself, so put pokemon into battleview when they're made here
         enemy.battleView();
         
-
+        
         goToMenu();
     }
 
@@ -133,8 +134,7 @@ public class Battle extends World implements IDisplayComponent
             min = 10;
             level = (int)(Math.random()*(max - min + 1) + min);
         }
-        PokemonFactory k = new PokemonFactory();
-        return k.getPokemon(randInd, level);
+        return myPokeFactory.getPokemon(randInd, level);
     }
 
     public void capturePokemon(Pokemon captured){
