@@ -23,3 +23,11 @@
     - Implement the patterns and test code after integrating with others changes.
 - What blockers do I have?
     - No blockers.
+
+## Week 4
+- What did I do this week?
+    - Implemented the Factory pattern to create new pokemons in the game. Came across issue where we can't use interface as there's dependency to add object of type actor to the Greenfoot world. Brainstormed with team and decided to create abstract class instead.
+- What am I planning for the next week?
+    - None, finished project and demoed successfully!
+- What blockers do I have?
+    - No blockers.
